@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import { TitleText } from './components/TitleText';
+import Navbar from './components/Navbar';
 import './App.css';
+import Home from './components/pages/Home';
+import About from './components/pages/About';
+import Posts from './components/pages/Posts';
+import Games from './components/pages/Games';
+import Projects from './components/pages/Projects';
 
-function App() {
+function App(){
+  let Component;
+  switch (window.location.pathname) {
+    case "/":
+      Component = <Home/>
+      break;
+    case "/about":
+      Component = <About/>
+      break;
+    case "/posts":
+      Component = <Posts/>
+      break;
+    case "/games":
+      Component = <Games/>
+      break;
+    case "/projects":
+      Component = <Projects/>
+      break;
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <TitleText text='Arrowtips'/>    {/** text is a dynamic prop variable */}
+      <Navbar/>
+      <div className='componentPage'>
+        {Component}
+      </div>
     </div>
-  );
+  )
 }
 
 export default App;
